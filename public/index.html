@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
-
+    <link rel="stylesheet" href="/styles/user-tweets.css" type="text/css" />
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -32,7 +32,7 @@
         <i class="fa-solid fa-angles-down"></i>
       </div>
     </nav>
-    <header>
+    <header class="nav-header">
       <div>
           <img src="/images/profile-hex.png"> 
       </div>
@@ -40,7 +40,7 @@
       <div>
           <h2>Your Name</h2>
       </div>
-  </header>
+    </header>
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
@@ -55,7 +55,31 @@
         </form>
       </section>
       <section class="user-tweets">
+        <article class="tweet">
+          <header>
+            <div class="displayName">
+              <img ><i class="fa-regular fa-user"></i>
+              <span >Newton</span>
+            </div>
+            <span class="tweeterHandle">@SirIsaac</span>
+          </header>
 
+          <p class ="tweeted-content"> What a great day to tweet!</p>
+
+          <footer>
+            <time datetime="2023-12-25">December 25, 2023</time>
+            <div class="tweet-actions">
+              <button class = "like">
+                <i class="fa-regular fa-heart"></i></button>
+              <button class = "retweet">
+                <i class="fa-solid fa-retweet"></i>
+              </button>
+              <button class = "reply">
+                <i class="fa-solid fa-flag"></i>
+              </button>
+            </div>
+          </footer>
+        </article>
       </section>
     </main>
     <script src ="/scripts/composer-char-counter.js"></script>
