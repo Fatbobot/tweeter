@@ -4,7 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(function () {
-  
   const tweetData = [
     {
       user: {
@@ -29,17 +28,13 @@ $(document).ready(function () {
       created_at: 1703021162870,
     },
   ];
-  // const displayError = function() {
-  //     const $errorMsg = `
-  //     `
-  // }
   const createTweetElement = function (tweetObj) {
     const timeAgo = timeago.format(new Date(tweetObj.created_at));
     const $tweet = `
       <article class="tweet">
         <header>
           <div class="displayName">
-            <img ><i class="fa-regular fa-user"></i>
+            <img src=${tweetObj.user.avatars}>
             <span >${tweetObj.user.name}</span>
           </div>
           <span class="tweeterHandle">${tweetObj.user.handle}</span>
@@ -78,12 +73,12 @@ $(document).ready(function () {
   };
   $form.on("submit", (event) => {
     event.preventDefault();
-    const tweetText = escape($('#tweet-text').val());
+    const tweetText = escape($("#tweet-text").val());
     if (tweetText.length === 0) {
-      window.alert("Your tweet is empty!");
+      displayError("Your tweet is empty!");
       return;
     } else if (tweetText.length > 140) {
-      window.alert("Your tweet is too long!");
+      displayError("Your tweet is too long!");
       return;
     }
     const formData = { text: tweetText };
@@ -92,11 +87,11 @@ $(document).ready(function () {
       url: "/tweets/",
       data: formData,
       success: () => {
-        $form.trigger('reset');
-        loadTweets()
+        $form.trigger("reset");
+        loadTweets();
       },
     });
-    $('#tweet-text').val('');
+    $("#tweet-text").val("");
   });
   const loadTweets = function () {
     $.ajax({
@@ -104,8 +99,20 @@ $(document).ready(function () {
       url: "/tweets/",
     }).then((tweets) => {
       renderTweets(tweets);
-      console.log()
+      console.log();
     });
   };
-  loadTweets()
+  const displayError = function (errorMsg) {
+    $(".submission-error").remove();
+    const $errorHtml = `
+      <div class= "submission-error">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>${errorMsg}!</span>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      `;
+    $(".new-tweet").before($errorHtml);
+    $($errorHtml).slideDown();
+  };
+  loadTweets();
 });
