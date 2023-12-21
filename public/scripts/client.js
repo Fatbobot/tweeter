@@ -29,16 +29,10 @@ $(document).ready(function () {
       created_at: 1703021162870,
     },
   ];
-  const loadTweets = function () {
-    $.ajax({
-      method: "GET",
-      url: "/tweets/",
-    }).then((tweets) => {
-      renderTweets(tweets);
-      console.log()
-    });
-  };
-
+  // const displayError = function() {
+  //     const $errorMsg = `
+  //     `
+  // }
   const createTweetElement = function (tweetObj) {
     const timeAgo = timeago.format(new Date(tweetObj.created_at));
     const $tweet = `
@@ -84,14 +78,15 @@ $(document).ready(function () {
   };
   $form.on("submit", (event) => {
     event.preventDefault();
-    const formData = $form.serialize();
-    if (formData.length === 0) {
+    const tweetText = escape($('#tweet-text').val());
+    if (tweetText.length === 0) {
       window.alert("Your tweet is empty!");
       return;
-    } else if (formData.length > 140) {
+    } else if (tweetText.length > 140) {
       window.alert("Your tweet is too long!");
       return;
     }
+    const formData = { text: tweetText };
     $.ajax({
       method: "POST",
       url: "/tweets/",
@@ -103,5 +98,14 @@ $(document).ready(function () {
     });
     $('#tweet-text').val('');
   });
+  const loadTweets = function () {
+    $.ajax({
+      method: "GET",
+      url: "/tweets/",
+    }).then((tweets) => {
+      renderTweets(tweets);
+      console.log()
+    });
+  };
   loadTweets()
 });
