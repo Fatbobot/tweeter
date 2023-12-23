@@ -4,6 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(function () {
+  //Preloaded User profiles
   const tweetData = [
     {
       user: {
@@ -28,6 +29,9 @@ $(document).ready(function () {
       created_at: 1703021162870,
     },
   ];
+
+  //returns Html to create tweet-article dynamically. 
+  //Parameters take object in format of "tweetData" above
   const createTweetElement = function (tweetObj) {
     const timeAgo = timeago.format(new Date(tweetObj.created_at));
     const $tweet = `
@@ -59,21 +63,29 @@ $(document).ready(function () {
       `;
     return $tweet;
   };
+
+  // function that loops through tweetData to render tweets on page.
   const renderTweets = function (tweetData) {
     for (const tweet of tweetData) {
       let $tweet = createTweetElement(tweet);
       $(".user-tweets").prepend($tweet);
     }
   };
-  const $form = $(`#tweet-creation`);
+
+  //XSS escape function
   const escape = function (str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
+
+  //event handler when user creates new tweet.
+  const $form = $(`#tweet-creation`);
   $form.on("submit", (event) => {
+    //prevents page refresh on event submission
     event.preventDefault();
     const tweetText = escape($("#tweet-text").val());
+    //Edge case tweet handler. Empty or too long text-area.
     if (tweetText.length === 0) {
       displayError("Your tweet is empty!");
       return;
@@ -81,6 +93,7 @@ $(document).ready(function () {
       displayError("Your tweet is too long!");
       return;
     }
+    //Post request
     const formData = { text: tweetText };
     $.ajax({
       method: "POST",
@@ -91,8 +104,11 @@ $(document).ready(function () {
         loadTweets();
       },
     });
+    //Clear submission field
     $("#tweet-text").val("");
   });
+  //function that is called after the post request is completed.
+  //Renders tweets immediately after successful tweet submissions.
   const loadTweets = function () {
     $.ajax({
       method: "GET",
@@ -102,6 +118,7 @@ $(document).ready(function () {
       console.log();
     });
   };
+  //function that takes in desired error message and displays for user.
   const displayError = function (errorMsg) {
     $(".submission-error").remove();
     const $errorHtml = `
@@ -117,5 +134,6 @@ $(document).ready(function () {
       $(".submission-error").remove();
     });
   }
+  //loads tweets on first page render.
   loadTweets();
 });

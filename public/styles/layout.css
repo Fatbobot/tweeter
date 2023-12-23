@@ -32,20 +32,3 @@ main {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
-
- @media only screen and (min-width: 1024px) {
-  body {
-    display: flex;
-    flex-direction: row;
-  }
-  .nav-header {
-    margin-right: 5%;
-    margin-top: 300px;
-    margin-left: 5%;
-  }
-  .container {
-    padding-top: 120px;
-    margin-right: 10%;
-  }
-
-}
