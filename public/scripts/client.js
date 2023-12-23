@@ -112,7 +112,10 @@ $(document).ready(function () {
       </div>
       `;
     $(".new-tweet").before($errorHtml);
-    $($errorHtml).slideDown();
-  };
+    $(".submission-error").css('display', 'flex').hide().slideDown();
+    $(".submission-error").delay(2000).slideUp(1000, function() {
+      $(".submission-error").remove();
+    });
+  }
   loadTweets();
 });
