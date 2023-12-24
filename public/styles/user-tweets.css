@@ -1,0 +1,76 @@
+/*
+* css styling for tweet container with user-tweets.
+*/
+.user-tweets {
+  display: flex;
+  margin: 10px;
+  padding-top: 20px;
+  width: 80%;
+  flex-direction: column;
+}
+.tweet {
+  border: 3px solid black;
+  padding-bottom: 10px;
+  width: 100%;
+  transition: box-shadow 0.1s ease;
+  margin-bottom: 20px;
+}
+.tweet:hover {
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+}
+.tweet .tweeted-content{
+  display: flex;
+  border-bottom: 2px solid black;
+  margin: 20px;
+}
+.displayName{
+  display: flex;
+  justify-content: flex-start;
+}
+.displayName img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.tweeterHandle {
+  display: flex;
+  justify-content: flex-end;
+}
+.tweet-actions button{
+  background-color: transparent;
+  border: none;
+}
+.tweet-actions button:hover {
+  color: red;
+}
+.tweet header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+.tweet footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+.tweet footer time {
+  font-size: .7em;
+}
+/*
+* css styling for submission-errors. Empty text area or over character-limit
+*/
+.submission-error {
+  display: none;
+  width: 80%;
+  justify-content: space-between;
+  color: red;
+  border: 3px solid red;
+  height: 100px;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: 'Bungee', sans-serif;
+  border-top: none;
+}
