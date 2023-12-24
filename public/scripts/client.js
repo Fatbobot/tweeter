@@ -66,6 +66,7 @@ $(document).ready(function () {
 
   // function that loops through tweetData to render tweets on page.
   const renderTweets = function (tweetData) {
+    $(".user-tweets").empty();
     for (const tweet of tweetData) {
       let $tweet = createTweetElement(tweet);
       $(".user-tweets").prepend($tweet);
@@ -103,6 +104,10 @@ $(document).ready(function () {
         $form.trigger("reset");
         loadTweets();
       },
+      error: (jqXHR, textStatus, errorThrown) => {
+        // Handle failure here
+        displayError(`Failed to post tweet: ${textStatus} - ${errorThrown}`);
+      }
     });
     //Clear submission field
     $("#tweet-text").val("");
@@ -115,7 +120,9 @@ $(document).ready(function () {
       url: "/tweets/",
     }).then((tweets) => {
       renderTweets(tweets);
-      console.log();
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      // Handle failure here
+      displayError(`Failed to load tweets: ${textStatus} - ${errorThrown}`);
     });
   };
   //function that takes in desired error message and displays for user.
