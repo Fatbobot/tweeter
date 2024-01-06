@@ -111,6 +111,7 @@ $(document).ready(function () {
     });
     //Clear submission field
     $("#tweet-text").val("");
+    $("#tweet-text").closest('.new-tweet').find('.counter').text(140).removeClass('negative');
   });
   //function that is called after the post request is completed.
   //Renders tweets immediately after successful tweet submissions.
