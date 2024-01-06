@@ -3,7 +3,10 @@
 Tweeter is a simple, single-page Twitter clone.
 
 This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express back-end skills.
-
+## Final product
+!["Screenshot of Main page on Desktop screen"](https://github.com/Fatbobot/tweeter/blob/master/docs/Tweeter%20SC%201.png?raw=true)
+!["Screenshot of Main page on Tablet ir Phone screen"](https://github.com/Fatbobot/tweeter/blob/master/docs/Tweeter%20SC%202.png?raw=true)
+!["Screenshot of Error slide down. Text changes depending on error"](https://github.com/Fatbobot/tweeter/blob/master/docs/Tweeter%20SC%203.png?raw=true)
 ## Getting Started
 
 1. [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository using this repository as a template.
